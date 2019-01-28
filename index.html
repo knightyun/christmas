@@ -1,0 +1,189 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" name="viewport" content="initial-scale=1,user-scalable=no" />
+    <link rel="subresource" href="snow.svg" />
+    <title>Merry Christmas</title>
+    <style>
+      @keyframes snowRotate {
+        from {
+          transform: rotate(0);
+        }
+        to {
+          transform: rotate(360deg);
+        }
+      }
+      @-webkit-keyframes snowRotate {
+        from {
+          -webkit-transform: rotate(0);
+        }
+        to {
+          -webkit-transform: rotate(360deg);
+        }
+      }
+      @-moz-keyframes snowRotate {
+        from {
+          -moz-transform: rotate(0);
+        }
+        to {
+          -moz-transform: rotate(360deg);
+        }
+      }
+      @keyframes snowMove {
+        form {
+          top: 0%;
+        }
+        to {
+          top: 100%;
+        }
+      }
+      @-webkit-keyframes snowMove {
+        form {
+          top: 0%;
+        }
+        to {
+          top: 100%;
+        }
+      }
+      @-moz-keyframes snowMove {
+        form {
+          top: 0%;
+        }
+        to {
+          top: 100%;
+        }
+      }
+      @-webkit-keyframes textRotate {
+        from {
+          -webkit-transform: perspective(500) rotate3d(0, 1, 0, 0);
+          color: green;
+        }
+        20% {
+          -webkit-transform: perspective(500) rotate3d(0, 1, 0, 360deg);
+          color: yellow;
+        }
+        40% {
+          -webkit-transform: perspective(500) rotate3d(1, 0, 0, 0deg);
+        }
+        60% {
+          -webkit-transform: perspective(500) rotate3d(1, 0, 0, 360deg);
+          color: green;
+        }
+        80% {
+          -webkit-transform: perspective(500) rotate3d(0, 0, 1, 0deg);
+        }
+        to {
+          -webkit-transform: perspective(500) rotate3d(0, 0, 1, 360deg);
+          color: yellow;
+        }
+      }
+      @-moz-keyframes textRotate {
+        from {
+          -moz-transform: perspective(500) rotate3d(0, 1, 0, 0);
+          color: green;
+        }
+        20% {
+          -moz-transform: perspective(500) rotate3d(0, 1, 0, 360deg);
+          color: yellow;
+        }
+        40% {
+          -moz-transform: perspective(500) rotate3d(1, 0, 0, 0deg);
+        }
+        60% {
+          -moz-transform: perspective(500) rotate3d(1, 0, 0, 360deg);
+          color: green;
+        }
+        80% {
+          -moz-transform: perspective(500) rotate3d(0, 0, 1, 0deg);
+        }
+        to {
+          -moz-transform: perspective(500) rotate3d(0, 0, 1, 360deg);
+          color: yellow;
+        }
+      }
+      
+      body {
+        width: 100%;
+        padding: 0;
+        margin: 0;
+        background: rgb(200, 0, 0);
+      }
+      h1 {
+        font-size: 3rem;
+        max-width: 8em;
+        text-shadow: .03em .03em .03em white,
+        -.02em -.02em .02em black;
+        text-align: center;
+        margin: auto;
+        margin-top: 8rem;
+        box-shadow: 0 -.1em .1em white;
+        -webkit-animation: textRotate 24s linear infinite;
+        -moz-animation: textRotate 24s linear infinite;
+      }
+      #container {
+        width: 100%;
+      }
+      img {
+        width: 10px;
+        position: absolute;
+        top: 0;
+        transition: 3s linear;
+        -webkit-transition: 3s linear;
+        -moz-transition: 3s linear;
+        animation: snowRotate 3s infinite alternate,
+        snowMove 4s linear;
+        -webkit-animation: snowRotate 3s infinite alternate,
+        snowMove 4s linear;
+        -moz-animation: snowRotate 3s infinite alternate,
+        snowMove 4s linear;
+      }
+      #bottom {
+        width: 100%;
+        height: 20%;
+        position: fixed;
+        left: 0;
+        bottom: 0;
+        background: linear-gradient( rgb(200, 0, 0), white);
+        background: -webkit-linear-gradient( rgb(200, 0, 0), white);
+        background: -moz-linear-gradient( rgb(200, 0, 0), white);
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Merry Christmas</h1>
+    <div id="container"></div>
+    <div id="bottom"></div>
+    
+    <script>
+      var w = innerWidth,
+      h = innerHeight;
+      var container = document.querySelector('#container');
+      var bottom = document.querySelector('#bottom');
+      var snowImg = document.createElement('img');
+      var snow_top = 0,
+          snow_left = 0;
+      var count = 0;
+      var snow_number = h / 3;
+      
+      snowImg.src = './snow.svg';
+      var int1 = setInterval(function(){
+        w = innerWidth,
+        h = innerHeight;
+        var snowTmpImg = snowImg.cloneNode();
+        snow_left = Math.round(Math.random()*w) - 20;
+        snowTmpImg.style.left = snow_left + 'px';
+        snowTmpImg.style.width = Math.round(Math.random()*15) + 5 + 'px';
+        container.appendChild(snowTmpImg);
+        snowTmpImg.style.opacity = Math.round(Math.random()*10)/10;
+        count++;
+      }, 0);
+      
+      var int2 = setInterval(function(){
+        if (container.childNodes.length > snow_number) {
+          container.removeChild(container.
+          childNodes[0]);
+        }
+      }, 0);
+    </script>
+  </body>
+</html>
